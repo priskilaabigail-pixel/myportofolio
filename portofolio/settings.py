@@ -16,7 +16,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # konfigurasi ALLOWED_HOSTS and PRODUCTION
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "https://pws.cs.ui.ac.id/priskila.abigail/myportofolio"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "priskila-abigail-myportofolio.pws.cs.ui.ac.id", "http://priskila-abigail-myportofolio.pws.cs.ui.ac.id/"]
 PRODUCTION = os.getenv('PRODUCTION', 'False').lower() == 'true'
 
 from pathlib import Path
@@ -34,7 +34,6 @@ SECRET_KEY = "django-insecure--urle)#hs5%&8qnc%8muyb#nw!y-3%!vb%407h+znm^(lovp&2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
 
 
 # Application definition
