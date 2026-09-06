@@ -145,6 +145,24 @@ h1,
   background-color: var(--accent);
 }
 
+.educations {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.education {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--paper);
+  background-color: var(--ink);
+  border-radius: var(--radius);
+  padding: 0.5rem 1.1rem;
+  transition: background-color 0.2s ease;
+}
+
 .hero-photo {
   grid-area: photo;
   align-self: center;
