@@ -73,8 +73,9 @@ h1,
 }
 
 .education-grid {
-  display: grid;
-  grid-template-columns: 1.3fr 1fr;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: var(--accent-dark);
   gap: 1.5rem 3rem;
 }
