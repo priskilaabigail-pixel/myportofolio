@@ -237,5 +237,6 @@ h1,
 
   .education-grid {
     grid-template-columns: 1fr;
+    justify-content: flex-start;
   }
 }
