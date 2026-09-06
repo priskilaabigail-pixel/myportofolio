@@ -76,7 +76,6 @@ h1,
   display: grid;
   grid-template-columns: 1.3fr 1fr;
   gap: 1.5rem 3rem;
-  background-color: var(--ink);
 }
 
 .hero-grid {
