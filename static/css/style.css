@@ -68,6 +68,17 @@ h1,
   padding: 4.5rem 0 5rem;
 }
 
+.education {
+  padding: 4.5rem 0 5rem;
+}
+
+.education-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  color: var(--accent-dark);
+  gap: 1.5rem 3rem;
+}
+
 .hero-grid {
   display: grid;
   grid-template-columns: 1.3fr 1fr;
