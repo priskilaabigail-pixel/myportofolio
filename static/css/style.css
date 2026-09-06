@@ -73,10 +73,8 @@ h1,
 }
 
 .education-grid {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: var(--accent-dark);
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
   gap: 1.5rem 3rem;
 }
 
@@ -168,9 +166,9 @@ h1,
 
 .educations {
   display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
   flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-start;
 }
 
 .hero-photo {
