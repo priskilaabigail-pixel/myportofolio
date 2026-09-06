@@ -170,6 +170,9 @@ h1,
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
+  align-items: center;
+  text-align: center;
+  flex-direction: column-reverse;
 }
 
 .education {
