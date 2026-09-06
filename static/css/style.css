@@ -119,6 +119,15 @@ h1,
   margin-bottom: 0.15rem;
 }
 
+.meta-row dtes {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  margin-bottom: 0.15rem;
+  font-weight: 900;
+}
+
 .meta-row dd {
   font-weight: 600;
 }
