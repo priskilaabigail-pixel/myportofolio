@@ -7,6 +7,7 @@
 :root {
   --ink: #1c1917;
   --paper: #faf6f0;
+  --paper-dark: #b9ac98;
   --accent: #d95d39;
   --accent-dark: #a8442a;
   --line: #e3d9c9;
@@ -65,17 +66,25 @@ h1,
 }
 
 .hero {
-  padding: 4.5rem 0 5rem;
+  padding: 8rem 0 10rem;
 }
 
 .education {
+  background-color: var(--paper-dark);
   padding: 3rem 0 5rem;
 }
 
 .education-grid {
   display: grid;
-  grid-template-columns: 1.3fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 1.5rem 3rem;
+}
+
+.educations {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-start;
 }
 
 .hero-grid {
@@ -123,7 +132,7 @@ h1,
 
 .meta-row dt {
   font-size: 0.75rem;
-  text-transform: uppercase;
+
   letter-spacing: 0.06em;
   color: var(--text-muted);
   margin-bottom: 0.15rem;
@@ -140,6 +149,7 @@ h1,
 
 .meta-row dd {
   font-weight: 600;
+  text-transform: uppercase;
 }
 
 .social-links {
@@ -162,13 +172,6 @@ h1,
 
 .social-link:hover {
   background-color: var(--accent);
-}
-
-.educations {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  align-items: flex-start;
 }
 
 .hero-photo {
