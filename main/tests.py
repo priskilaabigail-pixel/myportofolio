@@ -52,12 +52,28 @@ class MainTest(TestCase):
         self.assertContains(response, "Part-Time")
         self.assertContains(response, "Sedang berlangsung")
         self.assertContains(response, f'href="{reverse("main:show_main")}"')
+        
+    def test_certification_page(self):
+        response = self.client.get(reverse("main:show_certification"))
+        
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "certification.html")
+        self.assertContains(response, self.certification.course_name)
+        self.assertContains(response, self.experience.description)
+        self.assertContains(response, "vscode")
+        self.assertContains(response, f'href="{reverse("main:show_main")}"')
 
     def test_empty_experience_page(self):
         Experience.objects.all().delete()
         response = self.client.get(reverse("main:show_experience"))
 
         self.assertContains(response, "Belum ada pengalaman yang ditambahkan.")
+        
+    def test_empty_certification_page(self):
+            Certification.objects.all().delete()
+            response = self.client.get(reverse("main:show_certification"))
+    
+            self.assertContains(response, "Belum ada sertifikat yang ditambahkan.")
 
     def test_completed_experience(self):
         self.experience.ended_at = timezone.now()
@@ -67,3 +83,5 @@ class MainTest(TestCase):
         self.assertFalse(self.experience.is_ongoing)
         self.assertContains(response, "Selesai")
         self.assertNotContains(response, "Sedang berlangsung")
+        
+    
