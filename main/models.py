@@ -42,4 +42,4 @@ class Certification(models.Model):
     description = models.TextField(null=True, blank=True)
     
     def __str__(self):
-        return self.nama_kursus
+        return self.course_name
