@@ -34,3 +34,11 @@ class Experience(models.Model):
     @property
     def is_ongoing(self):
         return self.ended_at is None
+    
+class Sertifikasi(models.Model):
+    course_name = models.CharField(max_length=100)
+    platform = models.CharField(max_length=100)
+    ended_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return self.nama_kursus
