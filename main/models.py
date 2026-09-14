@@ -39,6 +39,7 @@ class Experience(models.Model):
 class Certification(models.Model):
     course_name = models.CharField(max_length=100)
     platform = models.CharField(max_length=100)
+    description = models.TextField()
     ended_at = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
