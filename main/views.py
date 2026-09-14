@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from main.models import Experience, Mahasiswa
+from main.models import Experience, Mahasiswa, Certification
 
 
 def show_main(request):
@@ -24,3 +24,9 @@ def show_experience(request):
         "experience_list": Experience.objects.all(),
     }
     return render(request, "experience.html", context)
+
+def show_certification(request):
+    context = {
+        "name": "Priskila",
+        "certification_list": Certification.objects.all(),
+    }
