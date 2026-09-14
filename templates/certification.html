@@ -33,16 +33,13 @@
           <div class="certification-grid">
             {% for certification in certification_list %}
             <article class="certification-card">
-              <h2>{{ certification.title }}</h2>
+              <span class="certification-category">
+                {{ experience.platform }}
+              </span>
+              <h2>{{ certification.course_name }}</h2>
               <p class="certification-description">
                 {{ certification.description }}
               </p>
-
-              {% if experience.is_ongoing %}
-              <p class="experience-status">Sedang berlangsung</p>
-              {% else %}
-              <p class="experience-status">Selesai</p>
-              {% endif %}
             </article>
             {% empty %}
             <p class="empty-state">Belum ada pengalaman yang ditambahkan.</p>
