@@ -37,10 +37,10 @@ class Experience(models.Model):
         return self.ended_at is None
     
 class Certification(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     course_name = models.CharField(max_length=100)
     platform = models.CharField(max_length=100)
     description = models.TextField()
-    ended_at = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
         return self.nama_kursus

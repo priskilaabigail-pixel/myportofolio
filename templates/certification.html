@@ -25,19 +25,18 @@
     </header>
 
     <main>
-      <section class="experience-section" id="experience">
+      <section class="certification-section" id="certification">
         <div class="container">
           <p class="section-kicker">TERUS BELAJAR DAN BERTUMBUH</p>
           <h1>Certification</h1>
 
-          <div class="experience-grid">
-            {% for experience in experience_list %}
-            <article class="experience-card">
-              <span class="experience-category">
-                {{ experience.get_category_display }}
-              </span>
-              <h2>{{ experience.title }}</h2>
-              <p class="experience-description">{{ experience.description }}</p>
+          <div class="certification-grid">
+            {% for certification in certification_list %}
+            <article class="certification-card">
+              <h2>{{ certification.title }}</h2>
+              <p class="certification-description">
+                {{ certification.description }}
+              </p>
 
               {% if experience.is_ongoing %}
               <p class="experience-status">Sedang berlangsung</p>
