@@ -30,3 +30,4 @@ def show_certification(request):
         "name": "Priskila",
         "certification_list": Certification.objects.all(),
     }
+    return render(request, "certification.html", context)
