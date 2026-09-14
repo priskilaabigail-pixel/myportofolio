@@ -1,5 +1,7 @@
 Priskila Abigail Magaini 2506590252
 
+### Tugas 1
+
 1. Pada Tutorial dan Tugas 1, Anda diberi kebebasan untuk menentukan tampilan dari website portofolio Anda. Saat Anda merancang struktur HTML yang digunakan, apakah Anda menggunakan elemen semantik HTML5 seperti <section>, <article>, atau <aside>? Jika iya, bagaimana elemen tersebut membantu Anda dalam membuat static web? Jika tidak, mengapa tanpa elemen tersebut sudah memenuhi kebutuhan desain Anda?
 
 - Ya, saya menggunakan elemen semantik. Elemen-elemen seperti <header>, <footer>, dan lainnya membantu saya untuk membedakan bagian-bagian website dalam kode saya di file html.
@@ -15,3 +17,17 @@ Priskila Abigail Magaini 2506590252
 AI disclosure:
 Saya menggunakan AI untuk menjelaskan ulang ke saya berbagai macam bagian dari projek ini. Kemudian saya juga menggunakan AI untuk menanyakan beberapa komponen dari pertanyaan di atas. (https://share.gemini.google/aejR6JVNmubn)
 Saya tidak menggunakan AI untuk membuat section baru di web saya.
+
+### Tugas 2
+
+1. Jelaskan alur yang terjadi ketika pengguna membuka halaman portofolio baru, mulai dari permintaan yang diterima proyek hingga data ditampilkan pada browser. Dalam jawabanmu, jelaskan peran urls.py proyek, urls.py aplikasi, view, model, dan template.
+
+- Ketika pengguna mengirimkan request, request akan dikirimkan ke server. Kemudian request akan sampai di urls.py proyek yang akan mengopernya ke urls.py aplikasi. urls.py aplikasi akan mencocokan bagian akhir link lalu memanggil view yang tepat. Di view, logika bisnis dijalankan dan jika perlu view akan memanggil models (untuk data dinamis). Model adalah bentuk tabel database, model akan mengambil data yang diminta dari database kemudian mengirimkannya ke view. Lalu, template adalah kerangka tampilan. Biasanya akan ada placeholder pada template untuk menerima data dari view. Setelah semuanya bersatu menjadi file yang utuh, file tersebut akan dikirimkan kembali ke view yang akan mengirimkannya ke browser sebagai HTTP response.
+
+2. Mengapa data untuk bagian portofolio baru sebaiknya disimpan pada model dan tidak ditulis langsung di dalam template? Jelaskan dampaknya terhadap kemudahan pemeliharaan dan pengembangan aplikasi.
+
+- Agar perubahan dan penambahan data menjadi lebih mudah. Jika ditulis langsung di dalam template, untuk mengubah atau menambahkan data kita harus menulis ulang di template. Sedangkan jika disimpan pada model kita bisa membuat objek baru di terminal dan langsung tercatat.
+
+3. Apa perbedaan fungsi makemigrations dan migrate pada Django? Berikan contoh perubahan model yang mengharuskanmu menjalankan kedua perintah tersebut.
+
+- makemigrations berfungsi untuk mencatat perubahan yang dibuat pada kode dengan cara memindai models.py kemudian membuat file-file migrations. Sedangkan migrate berfungsi untuk mengeksekusi file-file migrations yang telah dibuat dengan cara mengirimkannya ke sistem database. Contohnya saat saya membuat atribut baru pada sebuah model, saya akan menjalankan kedua perintah makemigrations dan migrate secara berurutan.
