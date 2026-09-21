@@ -1,6 +1,6 @@
 from django.forms import ModelForm, TextInput, Textarea, URLInput
 
-from main.models import Project
+from main.models import Project, Education
 
 class ProjectForm(ModelForm):
     class Meta:
@@ -47,6 +47,58 @@ class ProjectForm(ModelForm):
             "project_image_url": URLInput(
                 attrs={
                     "placeholder": "https://drive.google.com/thumbnail?id=...&sz=w1000",
+                }
+            ),
+        }
+        
+from django.forms import ModelForm, TextInput, Textarea, NumberInput
+
+class EducationForm(ModelForm):
+    class Meta:
+        model = Education
+        fields = [
+            "institution",
+            "degree",
+            "start_year",
+            "end_year",
+            "description",
+        ]
+
+        labels = {
+            "institution": "Nama Institusi / Sekolah",
+            "degree": "Gelar / Jurusan",
+            "start_year": "Tahun Mulai",
+            "end_year": "Tahun Lulus",
+            "description": "Deskripsi",
+        }
+
+        widgets = {
+            "institution": TextInput(
+                attrs={
+                    "placeholder": "Contoh: Universitas Brawijaya / SMAN 1 Jakarta",
+                    "maxlength": 255,
+                }
+            ),
+            "degree": TextInput(
+                attrs={
+                    "placeholder": "Contoh: Sarjana Sistem Informasi / IPA",
+                    "maxlength": 255,
+                }
+            ),
+            "start_year": NumberInput(
+                attrs={
+                    "placeholder": "Contoh: 2018",
+                }
+            ),
+            "end_year": NumberInput( 
+                attrs={
+                    "placeholder": "Contoh: 2022 (Kosongkan jika masih berlangsung)",
+                }
+            ),
+            "description": Textarea(
+                attrs={
+                    "placeholder": "Ceritakan pencapaian, aktivitas organisasi, atau nilai tambahan selama menempuh pendidikan...",
+                    "rows": 3,
                 }
             ),
         }
