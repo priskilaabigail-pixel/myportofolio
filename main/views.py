@@ -4,6 +4,7 @@ from django.core import serializers
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from main.forms import ProjectForm, EducationForm
+from django.urls import reverse
 
 
 def show_main(request):
@@ -142,3 +143,19 @@ def delete_education(request, education_id):
         return redirect("main:show_education")
 
     return redirect("main:show_education")
+
+def edit_education(request, education_id):
+    education = get_object_or_404(Education, pk=education_id)
+    
+    form = EducationForm(request.POST or None, instance=education)
+    
+    if request.method == "POST" and form.is_valid():
+        form.save()
+        return redirect(reverse('main:show_education'))
+    
+    context = {
+        'form': form,
+        'name': 'Priskila',
+    }
+    
+    return render(request, "edit_education.html", context)
