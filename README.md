@@ -34,3 +34,20 @@ Saya tidak menggunakan AI untuk membuat section baru di web saya.
 
 AI disclosure:
 Saya menggunakan AI untuk memperbaiki error di PWS karena ketidakcocokan versi Django yang digunakan di pws dan yang saya gunakan. Kemudian saya juga menanyakan AI untuk mengubah password admin. Terakhir saya menggunakan AI untuk memastikan bahwa kode HTML saya menghasilkan hasil yang saya inginkan. (https://share.gemini.google/SszJSYqb5e4X`)
+
+### Tugas 3
+
+1. Jelaskan mengapa kita menggunakan ModelForm pada Django alih-alih membuat form HTML secara manual. Selain itu, jelaskan pula mengapa kita diwajibkan menambahkan {% csrf_token %} pada form tersebut!
+
+- ModelForm pada Django efisien karena membantu kita mencatat data dengan logika yang tidak repetitif, otomatis membuatkan tag HTML, otomatis memvalidasi data, dan menyimpan langsung data ke database sesuai model yang ada. csrf_token berguna untuk memverifikasi bahwa data form yang dikirim memang dari website kita, bukan dari website lain.
+
+2. Pada Tutorial 03, kita membahas format data JSON dan XML. Mengapa JSON lebih disukai dalam pengembangan aplikasi web modern dibandingkan XML?
+
+- JSON lebih disukai karena ukurannya ringan dan minim sintax, sehingga proses pemindahan data jadi lebih cepat dibanding XML.
+
+3. Jelaskan alur yang terjadi saat kamu menggunakan fungsi view untuk mengembalikan data portofoliomu dalam bentuk JSON. Mengapa kita perlu melakukan proses serialization pada model Django sebelum datanya dikembalikan?
+
+- User mengirimkan request ke URL tertentu yang kemudian dicocokan oleh Django dan memanggil fungsi view yang bertugas. Di view, Django kemudian mengambil data dari database. Hasil dari proses tersebut adalah QuerySet. QuerySet tersebut dimasukan kedalam fungsi serializers.serialize("json", data) yang akan mengubah struktur data menjadi bentuk string yang berstandar JSON. Serialization berfungsi sebagai penerjemah yang mengubah data dari bentuk kompleks menjadi bentuk teks pasangan key-value yang universal. Format JSON bersifat universal, ringan, dan gampang diurai menjadi objek disisi user.
+
+AI Disclosure:
+Saya menggunakan AI untuk membantu saya mengerti objektif tugas, membantu membuat ModelForm, menjelaskan kode, membantu membuat methods di views, membuat komponen template css, membantu membuat file html, mengatasi error, membantu membuat fitur edit, dan membantu menjawab pertanyaan refleksi. (https://share.gemini.google/TMlqb886ijf9)
