@@ -124,11 +124,11 @@ def show_education(request):
     return render(request, "education.html", context)
 
 def get_education_json(request):
-    title_query = request.GET.get("institution", "").strip()
+    institution_query = request.GET.get("institution", "").strip()
     education = Education.objects.all()
 
-    if title_query:
-        education = education.filter(institution__icontains=title_query)
+    if institution_query:
+        education = education.filter(institution__icontains=institution_query)
 
     projects_json = serializers.serialize("json", education)
     return HttpResponse(projects_json, content_type="application/json")
