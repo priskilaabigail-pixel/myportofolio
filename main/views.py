@@ -1,9 +1,9 @@
-from main.models import Experience, Mahasiswa, Certification, Project
+from main.models import Experience, Mahasiswa, Certification, Project, Education
 from django.contrib import messages
 from django.core import serializers
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
-from main.forms import ProjectForm
+from main.forms import ProjectForm, EducationForm
 
 
 def show_main(request):
@@ -85,4 +85,50 @@ def get_projects_json(request):
         projects = projects.filter(title__icontains=title_query)
 
     projects_json = serializers.serialize("json", projects)
+    return HttpResponse(projects_json, content_type="application/json")
+
+# Education
+
+def create_education(request):
+    form = EducationForm(request.POST or None)
+
+    if request.method == "POST" and form.is_valid():
+        form.save()
+        messages.success(request, "Edukasi baru berhasil ditambahkan!")
+        return redirect("main:show_education")
+
+    context = {
+        "name": "Priskila",
+        "form": form,
+    }
+    return render(request, "education_form.html", context)
+
+def show_education(request):
+    json_response = get_educations_json(request)
+
+    educations = serializers.deserialize(
+        "json",
+        json_response.content.decode("utf-8"),
+    )
+    
+    educations = [education.object for education in educations]
+    
+    institution_query = request.GET.get("institution", "").strip()
+
+    context = {
+        "name": "Priskila",
+        "education_list": educations,
+        "institution_query": institution_query,
+    }
+
+    return render(request, "education.html", context)
+
+def get_education_json(request):
+    title_query = request.GET.get("institution", "").strip()
+    education = Education.objects.all()
+
+    if title_query:
+        education = education.filter(institution__icontains=title_query)
+
+    projects_json = serializers.serialize("json", education)
     return HttpResponse(projects_json, content_type="application/json")
