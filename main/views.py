@@ -104,7 +104,7 @@ def create_education(request):
     return render(request, "education_form.html", context)
 
 def show_education(request):
-    json_response = get_educations_json(request)
+    json_response = get_education_json(request)
 
     educations = serializers.deserialize(
         "json",
@@ -132,3 +132,13 @@ def get_education_json(request):
 
     projects_json = serializers.serialize("json", education)
     return HttpResponse(projects_json, content_type="application/json")
+
+def delete_education(request, education_id):
+    education = get_object_or_404(Education, pk=education_id)
+
+    if request.method == "POST":
+        education.delete()
+        messages.success(request, "Education berhasil dihapus!")
+        return redirect("main:show_education")
+
+    return redirect("main:show_education")
