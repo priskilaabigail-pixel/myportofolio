@@ -26,32 +26,32 @@
                            aria-label="Cari berdasarkan nama proyek">
                     <button type="submit" class="button">Cari</button>
                 </form>
-                <div class="education-grid">
+                <div class="education-grid" style="display: flex; flex-direction: column; gap: 20px;">
                     {% for education in education_list %}
                     <article class="experience-card">
-                    <h2>{{ education.institution }}</h2>
+                        <h2>{{ education.institution }}</h2>
             
-                    <span class="experience-category">
-                    {{ education.degree }} 
-                    {% if education.start_year %}
-                    |   {{ education.start_year }} - {% if education.end_year %}{{ education.end_year }}{% else %}Sekarang{% endif %}
-                    {% endif %}
-                    </span>
+                        <span class="experience-category">
+                        {{ education.degree }} 
+                        {% if education.start_year %}
+                        |   {{ education.start_year }} - {% if education.end_year %}{{ education.end_year }}{% else %}Sekarang{% endif %}
+                        {% endif %}
+                        </span>
             
-                    <p class="experience-description">{{ education.description }}</p>
+                        <p class="experience-description">{{ education.description }}</p>
             
-                    <div class="education-card-actions">
-                        {% include "components/education_delete_modal.html" with education=education %}
-                    </div>
-                </article>
-    {% empty %}
-        {% if institution_query %}
-            <p class="empty-state">Tidak ada riwayat pendidikan dengan nama institusi tersebut.</p>
-        {% else %}
-            <p class="empty-state">Belum ada riwayat pendidikan yang ditambahkan.</p>
-        {% endif %}
-    {% endfor %}
-</div>
+                        <div class="education-card-actions">
+                            {% include "components/education_delete_modal.html" with education=education %}
+                        </div>
+                    </article>
+                    {% empty %}
+                        {% if institution_query %}
+                            <p class="empty-state">Tidak ada riwayat pendidikan dengan nama institusi tersebut.</p>
+                        {% else %}
+                            <p class="empty-state">Belum ada riwayat pendidikan yang ditambahkan.</p>
+                        {% endif %}
+                    {% endfor %}
+                </div>
             </div>
         </section>
     </main>

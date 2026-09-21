@@ -606,14 +606,6 @@ h1,
     text-align: center;
   }
 
-/* --- Education Grid (1 Card per baris) --- */
-.education-grid {
-  display: grid;
-  grid-template-columns: 1fr; /* Memaksa hanya ada 1 kolom */
-  gap: 20px;
-}
-
-/* Base card untuk education */
 .education-grid .experience-card {
   display: flex;
   flex-direction: column;
@@ -623,7 +615,6 @@ h1,
   margin-bottom: 0;
 }
 
-/* Tombol Tambah Education */
 .education-add-button {
   display: inline-flex;
   align-items: center;
@@ -635,7 +626,6 @@ h1,
   line-height: 1;
 }
 
-/* Search Bar Education */
 .education-search {
   display: flex;
   gap: 0.75rem;
@@ -658,14 +648,12 @@ h1,
   border-color: var(--accent);
 }
 
-/* Action Buttons di dalam card (Edit/Delete) */
 .education-card-actions {
   display: flex;
-  /* Menggunakan row karena ruangnya lebih lebar di format 1 kolom */
   flex-direction: row; 
   align-items: center;
   gap: 10px;
-  margin-top: 1.5rem; /* Memberi jarak dengan konten di atasnya */
+  margin-top: 1.5rem;
 }
 
 .education-card-actions .button {
