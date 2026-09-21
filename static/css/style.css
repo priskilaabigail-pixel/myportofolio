@@ -609,9 +609,8 @@ h1,
 /* --- Education Grid (1 Card per baris) --- */
 .education-grid {
   display: grid;
-  gap: 1.5rem;
-  margin-top: 1.5rem;
-  grid-template-columns: repeat(2, minmax(300px, 1fr));/* Memaksa 1 kolom/item per baris */
+  grid-template-columns: 1fr; /* Memaksa hanya ada 1 kolom */
+  gap: 20px;
 }
 
 /* Base card untuk education */
