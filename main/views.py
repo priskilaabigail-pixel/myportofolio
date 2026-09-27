@@ -78,6 +78,7 @@ def show_projects(request):
     }
     return render(request, "project.html", context)
 
+@login_required(login_url="/login/")
 def delete_project(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
 
@@ -146,6 +147,7 @@ def get_education_json(request):
     projects_json = serializers.serialize("json", education)
     return HttpResponse(projects_json, content_type="application/json")
 
+@login_required(login_url="/login/")
 def delete_education(request, education_id):
     education = get_object_or_404(Education, pk=education_id)
 
@@ -156,6 +158,7 @@ def delete_education(request, education_id):
 
     return redirect("main:show_education")
 
+@login_required(login_url="/login/")
 def edit_education(request, education_id):
     education = get_object_or_404(Education, pk=education_id)
     

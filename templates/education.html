@@ -51,12 +51,13 @@
           <div class="education-card-actions">
             {% if user.is_superuser %} {% include
             "components/education_delete_modal.html" with education=education %}
-            {% endif %}
+            {% endif %} {% if user.is_superuser %}
             <a
               href="{% url 'main:edit_education' education.id %}"
               class="button"
               >Edit</a
             >
+            {% endif %}
           </div>
         </article>
         {% empty %} {% if institution_query %}
