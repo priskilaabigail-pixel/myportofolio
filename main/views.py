@@ -8,6 +8,8 @@ from main.forms import ProjectForm, EducationForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required  
+from django.core.exceptions import PermissionDenied        
 
 
 def show_main(request):
@@ -42,6 +44,7 @@ def show_certification(request):
     }
     return render(request, "certification.html", context)
 
+@login_required(login_url="/login/")
 def create_project(request):
     form = ProjectForm(request.POST or None)
 
@@ -94,7 +97,7 @@ def get_projects_json(request):
     return HttpResponse(projects_json, content_type="application/json")
 
 # Education
-
+@login_required(login_url="/login/")
 def create_education(request):
     form = EducationForm(request.POST or None)
 
@@ -190,7 +193,7 @@ def login_user(request):
         return response
 
     context = {
-        "name": "Burhan",
+        "name": "Priskila",
         "form": form,
     }
     return render(request, "login.html", context)
