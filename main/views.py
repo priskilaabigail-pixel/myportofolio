@@ -8,10 +8,15 @@ from main.forms import ProjectForm, EducationForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.urls import reverse
-from django.contrib.auth.decorators import login_required  
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.exceptions import PermissionDenied        
 
-
+# Fungsi untuk mengecek apakah user adalah anggota grup 'editor' atau superuser
+def is_editor(user):
+    return user.is_authenticated and (
+        user.groups.filter(name='editor').exists() or user.is_superuser
+    )
+    
 def show_main(request):
     mahasiswa_list = Mahasiswa.objects.all()
     last_login = request.COOKIES.get('last_login', 'Belum ada sesi login / Cookie tidak ditemukan')
