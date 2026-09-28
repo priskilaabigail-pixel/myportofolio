@@ -168,7 +168,6 @@ def delete_education(request, education_id):
     return redirect("main:show_education")
 
 @login_required(login_url="/login/")
-@user_passes_test(is_editor, login_url='/')
 def edit_education(request, education_id):
     if not (request.user.is_superuser or is_editor(request.user)):
         raise PermissionDenied
