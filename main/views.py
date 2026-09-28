@@ -80,6 +80,8 @@ def show_projects(request):
 
 @login_required(login_url="/login/")
 def delete_project(request, project_id):
+    if not request.user.is_superuser:
+        raise PermissionDenied
     project = get_object_or_404(Project, pk=project_id)
 
     if request.method == "POST":
@@ -149,6 +151,8 @@ def get_education_json(request):
 
 @login_required(login_url="/login/")
 def delete_education(request, education_id):
+    if not request.user.is_superuser:
+        raise PermissionDenied
     education = get_object_or_404(Education, pk=education_id)
 
     if request.method == "POST":
@@ -160,6 +164,8 @@ def delete_education(request, education_id):
 
 @login_required(login_url="/login/")
 def edit_education(request, education_id):
+    if not request.user.is_superuser:
+        raise PermissionDenied
     education = get_object_or_404(Education, pk=education_id)
     
     form = EducationForm(request.POST or None, instance=education)
