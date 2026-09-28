@@ -41,9 +41,14 @@
           <h2>{{ education.institution }}</h2>
 
           <span class="experience-category">
-            {{ education.degree }} {% if education.start_year %} | {{
-            education.start_year }} - {% if education.end_year %}{{
-            education.end_year }}{% else %}Sekarang{% endif %} {% endif %}
+            {{ education.degree }} 
+            {% if education.start_year %} | 
+            {{ education.start_year }} - {% if education.end_year %}
+            {{ education.end_year }}
+            {% else %}
+            Sekarang
+            {% endif %} 
+            {% endif %}
           </span>
 
           <p class="experience-description">{{ education.description }}</p>
