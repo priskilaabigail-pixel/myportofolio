@@ -11,10 +11,10 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.exceptions import PermissionDenied        
 
-# Fungsi untuk mengecek apakah user adalah anggota grup 'editor' atau superuser
+# Fungsi untuk mengecek apakah user adalah anggota grup 'editor'
 def is_editor(user):
     return user.is_authenticated and (
-        user.groups.filter(name='editor').exists() or user.is_superuser
+        user.groups.filter(name='editor').exists()
     )
     
 def show_main(request):
@@ -168,8 +168,9 @@ def delete_education(request, education_id):
     return redirect("main:show_education")
 
 @login_required(login_url="/login/")
+@user_passes_test(is_editor, login_url='/')
 def edit_education(request, education_id):
-    if not request.user.is_superuser:
+    if not (request.user.is_superuser or is_editor(request.user)):
         raise PermissionDenied
     education = get_object_or_404(Education, pk=education_id)
     
