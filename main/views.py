@@ -140,6 +140,7 @@ def show_education(request):
         "name": "Priskila",
         "education_list": educations,
         "institution_query": institution_query,
+        'is_editor': is_editor(request.user),
     }
 
     return render(request, "education.html", context)
