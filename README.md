@@ -51,3 +51,8 @@ Saya menggunakan AI untuk memperbaiki error di PWS karena ketidakcocokan versi D
 
 AI Disclosure:
 Saya menggunakan AI untuk membantu saya mengerti objektif tugas, membantu membuat ModelForm, menjelaskan kode, membantu membuat methods di views, membuat komponen template css, membantu membuat file html, mengatasi error, membantu membuat fitur edit, dan membantu menjawab pertanyaan refleksi. (https://share.gemini.google/TMlqb886ijf9)
+
+### Tugas 4
+
+AI Disclosure:
+Saya menggunakan AI untuk membantu saya mengerti objektif tugas, membantu membuat komponen template css, menghapus cookies, menambahkan user group 'editor', dan memastikan fitur-fitur tersedia untuk user yang tepat. (https://share.gemini.google/oYzYkACPtXkp)
