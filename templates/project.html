@@ -11,13 +11,12 @@
         </button>
         <h1>Projects</h1>
         {% if user.is_superuser %}
-        <a
-          href="{% url 'main:create_project' %}"
+        <button type="button"
           class="button project-add-button"
-        >
+          popovertarget="add-project-modal">
           <span aria-hidden="true">+</span>
           Tambah Proyek
-        </a>
+        </button>
         {% endif %}
       </div>
       <form id="project-search-form" class="project-search">
@@ -51,6 +50,9 @@
     </div>
   </section>
 </main>
+{% if user.is_superuser %}
+    {% include "components/project_form_modal.html" %}
+{% endif %}
  <script>
     // Konfigurasi
     const BASE_PROJECTS_ENDPOINT = "{% url 'main:get_projects_json' %}";
@@ -196,5 +198,9 @@
 
     // Start application
     fetchProjects(searchInput.value.trim());
+
+    function closeProjectModal() {
+      document.getElementById("add-project-modal").hidePopover();
+    }
     </script>
 {% endblock content %}
