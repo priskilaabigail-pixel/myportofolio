@@ -8,13 +8,12 @@
       <div class="project-header">
         <h1>Education</h1>
         {% if user.is_superuser %}
-        <a
-          href="{% url 'main:create_education' %}"
+        <button type="button"
           class="button project-add-button"
-        >
+          popovertarget="add-education-modal">
           <span aria-hidden="true">+</span>
-          Tambah Education
-        </a>
+          Tambah Edukasi
+        </button>
         {% endif %}
       </div>
       <form id="education-search-form" class="project-search">
@@ -47,7 +46,9 @@
     </div>
   </section>
 </main>
-
+{% if user.is_superuser %}
+    {% include "components/education_form_modal.html" %}
+{% endif %}
  <script>
     // Konfigurasi
     const BASE_EDUCATION_ENDPOINT = "{% url 'main:get_education_json' %}";
@@ -154,9 +155,9 @@
     }
 
 
-    // function closeProjectModal() {
-    //    document.getElementById("add-project-modal").hidePopover();
-    //}
+    function closeEducationModal() {
+       document.getElementById("add-education-modal").hidePopover();
+    }
 
     // Fetch data education
     async function fetchEducation(searchQuery = "") {
@@ -212,11 +213,11 @@
         searchEducation();
     });
 
-    // const CREATE_PROJECT_ENDPOINT = "{% url 'main:create_project_ajax' %}";
-    // const projectForm = document.getElementById('project-form');
+    const CREATE_EDUCATION_ENDPOINT = "{% url 'main:create_education_ajax' %}";
+    const educationForm = document.getElementById('education-form');
 
     // Membaca nilai cookie, digunakan untuk mengambil token CSRF
-     function getCookie(name) {
+    function getCookie(name) {
         let cookieValue = null;
         if (document.cookie && document.cookie !== '') {
             const cookies = document.cookie.split(';');
@@ -232,42 +233,42 @@
     }
 
     // Mengirim data form ke server
-    // async function addProject(event) {
-    //     event.preventDefault();
+    async function addEducation(event) {
+        event.preventDefault();
 
-    //     const submitButton = projectForm.querySelector('button[type="submit"]');
-    //     submitButton.disabled = true;
+        const submitButton = educationForm.querySelector('button[type="submit"]');
+        submitButton.disabled = true;
 
-    //     try {
-    //         const response = await fetch(CREATE_PROJECT_ENDPOINT, {
-    //             method: 'POST',
-    //             headers: { 'X-CSRFToken': getCookie('csrftoken') },
-    //             body: new FormData(projectForm),
-    //         });
-    //         const result = await response.json().catch(() => ({}));
+        try {
+            const response = await fetch(CREATE_EDUCATION_ENDPOINT, {
+                method: 'POST',
+                headers: { 'X-CSRFToken': getCookie('csrftoken') },
+                body: new FormData(educationForm),
+            });
+            const result = await response.json().catch(() => ({}));
 
-    //         if (response.ok) {
-    //             projectForm.reset();
-    //             closeProjectModal();
-    //             showToast('Berhasil', 'Proyek baru berhasil ditambahkan!', 'success');
-    //             fetchProjects(searchInput.value.trim());
-    //         } else {
-    //             const errorMessages = result.errors
-    //                 ? Object.values(result.errors).flat().map(error => error.message)
-    //                 : [result.message || `Terjadi kesalahan (status ${response.status}).`];
-    //             showToast('Gagal menambahkan proyek', errorMessages.join(' '), 'error');
-    //         }
-    //     } catch (error) {
-    //         console.error('Error adding project:', error);
-    //         showToast('Gagal menambahkan proyek', 'Tidak dapat terhubung ke server. Silakan coba lagi.', 'error');
-    //     } finally {
-    //         submitButton.disabled = false;
-    //     }
-    // }
+            if (response.ok) {
+                educationForm.reset();
+                closeEducationModal();
+                showToast('Berhasil', 'Education baru berhasil ditambahkan!', 'success');
+                fetchEducation(searchInput.value.trim());
+            } else {
+                const errorMessages = result.errors
+                    ? Object.values(result.errors).flat().map(error => error.message)
+                    : [result.message || `Terjadi kesalahan (status ${response.status}).`];
+                showToast('Gagal menambahkan education', errorMessages.join(' '), 'error');
+            }
+        } catch (error) {
+            console.error('Error adding education:', error);
+            showToast('Gagal menambahkan education', 'Tidak dapat terhubung ke server. Silakan coba lagi.', 'error');
+        } finally {
+            submitButton.disabled = false;
+        }
+    }
 
-    // if (projectForm) {
-    //     projectForm.addEventListener('submit', addProject);
-    // }
+    if (educationForm) {
+        educationForm.addEventListener('submit', addEducation);
+    }
 
     // Start application
     fetchEducation(searchInput.value.trim());
