@@ -72,7 +72,7 @@ def show_projects(request):
     title_query = request.GET.get("title", "").strip()
 
     context = {
-        "name": "Burhan",
+        "name": "Priskila",
         "title_query": title_query,
         "form": ProjectForm(),
     }
@@ -195,9 +195,11 @@ def get_education_json(request):
         data.append({
             "pk": str(education.id),
             "fields": {
-                "name": "Priskila",
-        	"education_list": educations,
-        	"institution_query": institution_query,
+                "instituion": education.institution,
+        	    "degree": education.degree,
+                "start_year": education.start_year,
+                "end_year": education.end_year,
+                "description": education.description,
                 "star_count": starred_users.count(),
                 "is_starred": is_starred,
                 "starred_by_names": starred_by_names,
