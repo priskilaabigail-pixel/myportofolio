@@ -158,20 +158,10 @@ def create_education(request):
     return render(request, "education_form.html", context)
 
 def show_education(request):
-    json_response = get_education_json(request)
-
-    educations = serializers.deserialize(
-        "json",
-        json_response.content.decode("utf-8"),
-    )
-    
-    educations = [education.object for education in educations]
-    
     institution_query = request.GET.get("institution", "").strip()
 
     context = {
         "name": "Priskila",
-        "education_list": educations,
         "institution_query": institution_query,
         'is_editor': is_editor(request.user),
     }
@@ -195,7 +185,7 @@ def get_education_json(request):
         data.append({
             "pk": str(education.id),
             "fields": {
-                "instituion": education.institution,
+                "institution": education.institution,
         	    "degree": education.degree,
                 "start_year": education.start_year,
                 "end_year": education.end_year,
@@ -289,3 +279,17 @@ def project_toggle_star(request, project_id):
             project.starred_by.add(request.user)
 
     return redirect("main:show_projects")
+
+@login_required(login_url="/login/")
+def education_toggle_star(request, education_id):
+    education = get_object_or_404(Education, pk=education_id)
+
+    if request.method == "POST":
+        # Kalau akun ini sudah pernah memberi star, batalkan star-nya.
+        # Kalau belum, tambahkan star.
+        if request.user in education.starred_by.all():
+            education.starred_by.remove(request.user)
+        else:
+            education.starred_by.add(request.user)
+
+    return redirect("main:show_education")

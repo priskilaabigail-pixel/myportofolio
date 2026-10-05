@@ -83,8 +83,11 @@
 
     // Membuat elemen card project
     function buildEducationCardElement(item) {
-        const education = item.fields;
-        const educationId = item.pk;
+        console.log("1. Raw Item dari Server:", item);
+        const education = item.fields || item;
+        console.log("2. Institution Name:", education.institution);
+
+        const educationId = item.pk || item.id;
 
         const articleElement = document.createElement('article');
         articleElement.className = 'experience-card';
