@@ -66,6 +66,9 @@ class Education(models.Model):
     start_year = models.PositiveIntegerField() 
     end_year = models.PositiveIntegerField(null=True, blank=True)
     description = models.TextField()
+    starred_by = models.ManyToManyField(
+        User, related_name="starred_education", blank=True
+    )
     
     def __str__(self):
         return self.institution
