@@ -46,6 +46,7 @@ class EducationSerializer(serializers.ModelSerializer):
     star_count = serializers.IntegerField(source='starred_by.count', read_only=True)
     is_starred = serializers.SerializerMethodField()
     starred_by_names = serializers.SerializerMethodField()
+    end_year = serializers.IntegerField(required=False, allow_null=True)
 
     class Meta:
         model = Education

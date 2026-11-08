@@ -197,9 +197,17 @@
 
         try {
             const formData = new FormData(educationForm);
-            const payload = Object.fromEntries([
-                'institution', 'degree', 'start_year', 'end_year', 'description',
-            ].map(name => [name, formData.get(name)]));
+
+            const endYearVal = formData.get('end_year');
+            
+            const payload = {
+                institution: formData.get('institution'),
+                degree: formData.get('degree'),
+                start_year: formData.get('start_year'),
+                // Jika endYearVal kosong string, set ke null agar tidak error validasi integer
+                end_year: endYearVal ? parseInt(endYearVal, 10) : null,
+                description: formData.get('description'),
+            };
 
             await writeEducation(BASE_EDUCATION_ENDPOINT, 'POST', payload);
             educationForm.reset();
