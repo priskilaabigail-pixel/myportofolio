@@ -56,3 +56,42 @@ Saya menggunakan AI untuk membantu saya mengerti objektif tugas, membantu membua
 
 AI Disclosure:
 Saya menggunakan AI untuk membantu saya mengerti objektif tugas, membantu membuat komponen template css, menghapus cookies, menambahkan user group 'editor', dan memastikan fitur-fitur tersedia untuk user yang tepat. (https://share.gemini.google/oYzYkACPtXkp)
+
+### Tugas 6
+
+REST is a software architectural style that
+describes a uniform interface between
+physically separate components, often
+across the Internet in a Client-Server
+architecture.
+
+
+1. Jelaskan apa yang dimaksud dengan REST dan mengapa mengembalikan JSON saja belum cukup untuk menyebut sebuah API sebagai RESTful! Jelaskan pula perbedaan PUT dan PATCH beserta contoh kapan masing-masing sebaiknya digunakan!
+
+- REST adalah arsitektur software yang mencakup interface yang seragam antara komponen-komponen yang terpisah, ering kali melintasi internet dalam arsitektur Client-Server. Mengembalikan JSON saja belum cukup karena JSON hanyalah format data. API disebut RESTful kalau juga memakai URL berbasis resource, method HTTP sesuai semantiknya, status code yang tepat (201, 404, 403), dan tidak menyimpan state klien di server. 
+
+Perbedaan PUT dan PATCH: 
+PUT mengganti seluruh resource, sehingga semua field wajib dikirim. Contoh: mengubah seluruh field education. Sedangkan PATCH mengubah sebagian field saja. Contoh: mengubah end_year saja.
+
+2. Jelaskan peran serializer pada Django REST Framework! Apa keuntungannya dibandingkan merakit dictionary secara manual dengan JsonResponse seperti pada Tutorial 05?
+
+- Serializer mengubah objek model/queryset menjadi tipe data native yang kemudian bisa diubah menjadi format JSON dan sebaliknya. Keuntungan dibanding JsonResponse manual:
+
+- Kode lebih ringkas dan konsisten, tidak perlu menyusun dictionary per field.
+- Validasi input otomatis
+- Mendukung create/update langsung
+- Perubahan model cukup disesuaikan di satu tempat
+
+3. Jelaskan perbedaan autentikasi dan otorisasi pada Django REST Framework! Mengapa hak akses harus diperiksa dengan permission class di server, bukan hanya dengan menyembunyikan tombol di template?
+
+- Autentikasi adalah proses untuk mengidentifikasi user, sedangkan otorisasi adalah proses untuk menentukan hak akses user. Hak akses harus diperiksa dengan permission class di server agar user yang tidak mempunyai hak akses tidak bisa memanggil endpoint langsung lewat browser devtools, curl, atau postman. Menyembunyikan tombol di template hanya mengubah penampilan bagi user tanpa melarang.
+
+4. Jelaskan mengapa permintaan yang mengubah data tetap memerlukan token CSRF ketika API memakai SessionAuthentication! Mengapa test yang memakai force_authenticate tidak cukup untuk membuktikan bahwa perlindungan CSRF berjalan?
+
+- SessionAuthentication memakai cookie sesi yang dikirim browser, termasuk dari situs jahat. Karena itu permintaan yang mengubah data (POST, PUT, PATCH, DELETE) wajib menyertakan token CSRF agar server tahu permintaan berasal dari halaman yang sah.
+
+force_authenticate tidak cukup karena melewati authentication class, sehingga pemeriksaan CSRF tidak pernah dijalankan dan test lulus tanpa token. Pembuktian yang benar memakai client.login() dengan APIClient(enforce_csrf_checks=True), lalu memastikan permintaan tanpa token ditolak (403).
+
+
+AI Disclosure:
+Saya menggunakan AI untuk membantu membuat implementasi Django RESTful untuk education, mulai dari api_views, serializers, education_html, api_urls, dan tests_api. Tetapi saya juga memastikan kode berjalan dengan lancar. Saya juga menggunakan AI untuk debugging. Selain itu, saya menggunakan AI untuk membantu saya menjawab pertanyaan reflektif. (https://share.gemini.google/KKpGzd69mbtZ)
