@@ -1,7 +1,7 @@
 from django.utils.html import strip_tags
 from rest_framework import serializers
 
-from main.models import Project
+from main.models import *
 
 
 class ProjectSerializer(serializers.ModelSerializer):
@@ -38,6 +38,50 @@ class ProjectSerializer(serializers.ModelSerializer):
         if request is None or not request.user.is_authenticated:
             return False
         return request.user in obj.starred_by.all()
+
+    def get_starred_by_names(self, obj):
+        return ", ".join(user.username for user in obj.starred_by.all())
+    
+class EducationSerializer(serializers.ModelSerializer):
+    star_count = serializers.IntegerField(source='starred_by.count', read_only=True)
+    is_starred = serializers.SerializerMethodField()
+    starred_by_names = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Education
+        fields = [
+            "id",
+            "institution",
+            "degree",
+            "start_year",
+            "end_year",
+            "description",
+            "star_count",
+            "is_starred",
+            "starred_by_names",
+        ]
+        read_only_fields = ["id"]
+        
+    def validate_institution(self, value):
+        value = strip_tags(value).strip()
+        if not value:
+            raise serializers.ValidationError("Institution cannot be empty.")
+        return value
+    
+    def validate_description(self, value):
+        return strip_tags(value)
+    
+    def validate_start_year(self, value):
+        return strip_tags(value)
+    
+    def validate_tech_stack(self, value):
+        return strip_tags(value)
+
+    def get_is_starred(self, obj):
+        request = self.context.get("request")
+        if request and request.user.is_authenticated:
+            return obj.starred_by.filter(pk=request.user.pk).exists()
+        return False
 
     def get_starred_by_names(self, obj):
         return ", ".join(user.username for user in obj.starred_by.all())
